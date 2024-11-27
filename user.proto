@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./proto;user";
+
+service UserService {
+  rpc RegisterUser (User) returns (UserID);
+  rpc GetUser (UserID) returns (User);
+  rpc DeleteUser (UserID) returns (Empty);
+  rpc ListUsers (Empty) returns (stream User);
+}
+
+message User {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UserID {
+  string id = 1;
+}
+
+message Empty {}

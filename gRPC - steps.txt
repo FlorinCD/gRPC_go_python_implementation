@@ -1,0 +1,38 @@
+1. Se intaleaza in folderul unde se afla proiectul:
+
+	1.1 ultima versiune de go (in cazul curent: go1.23.3 windows/amd64)
+	1.2 ultima versiune de python (in cazul curent: 3.12.1)
+
+	1.3 go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
+	1.4 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+2. Se creeaza file-ul user.proto care va defini serviciul UserService ce poate primi 4 tipuri de request-uri de la client si are 3 tipuri de mesaje
+
+3. Se genereaza codul pentru go si python folosind urmatoarele comenzi:
+	3.1 protoc --go_out=. --go-grpc_out=. user.proto  
+	3.2 python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. user.proto
+
+4. Se instaleaza alte dependencies pentru go cum ar fi un light db:
+	4.1 se creeaza un modul go pentru proiectul actual: go mod init my_project
+	4.2 pentru a adauga requirement - urile si file-ul sum se folosete: go mod tidy
+	4.1 go get github.com/mattn/go-sqlite3
+
+5. Se creeaza file-ul main.go (ce va crea server-ul) si client.py (ce va trimite request catre server)
+
+6. Se da run la main.go si client.py pentru a arata procesul.
+
+	6.1 go run main.go
+	6.2 python client.py
+
+
+
+
+
+
+
+
+
+
+
+
+
